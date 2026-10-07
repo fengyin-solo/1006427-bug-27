@@ -35,3 +35,28 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .error-text { color: #b42318; }
 .status-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 10px; font-size: 12px; color: var(--muted); }
 .legend-item { background: #eef2f7; border-radius: 999px; padding: 2px 10px; }
+.crew-select { margin-left: 4px; border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; background: #fff; }
+.notice-text { color: #067647; }
+.owner-note { font-size: 12px; color: var(--muted); margin: 4px 0; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; }
+.badge.rejected { background: #fef3f2; color: #b42318; border: 1px solid #fecdca; }
+.clickable-row { cursor: pointer; }
+.row-rejected td { background: #fff8f6; }
+.rejected-banner { background: #fef3f2; border: 1px solid #fecdca; color: #b42318; border-radius: 6px; padding: 6px 10px; font-size: 12px; }
+.modal-mask, .drawer-mask { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.3); z-index: 30; }
+.modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 420px; max-height: 82vh; overflow-y: auto; background: #fff; border-radius: 10px; padding: 16px 20px; z-index: 31; box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18); }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 440px; background: #fff; z-index: 31; padding: 16px 20px; overflow-y: auto; box-shadow: -6px 0 20px rgba(15, 23, 42, 0.15); }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.drawer-head h3 { margin: 0; }
+.drawer h4 { margin: 16px 0 8px; }
+.drawer-actions { display: flex; gap: 8px; }
+.form-list { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; }
+.form-list label span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+.form-list input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+.controlled-mark { font-style: normal; color: #b42318; margin-left: 4px; }
+.detail-list { display: grid; grid-template-columns: 96px 1fr; row-gap: 6px; column-gap: 8px; font-size: 13px; margin: 12px 0; }
+.detail-list dt { color: var(--muted); }
+.detail-list dd { margin: 0; }
+.audit-panel, .legacy-panel { margin-top: 16px; }
+.audit-panel h3, .legacy-panel h3 { font-size: 14px; margin: 0 0 8px; }
+.audit-item { border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 0 0 8px; font-size: 12px; }

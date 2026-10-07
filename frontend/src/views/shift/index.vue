@@ -67,6 +67,33 @@
       <span>共 {{ total }} 条值班交接班记录</span>
       <span v-if="errorMessage" class="error-text">{{ errorMessage }}</span>
     </footer>
+
+    <section class="legacy-panel">
+      <h3>交接遗留清单（炉渣归属判定回写）</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>来源</th>
+            <th>关联记录</th>
+            <th>触发班组</th>
+            <th>遗留事项</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in legacyItems" :key="item.id">
+            <td>{{ item.time }}</td>
+            <td>{{ item.source }}</td>
+            <td>{{ item.recordCode }}</td>
+            <td>{{ item.crew }}</td>
+            <td>{{ item.summary }}</td>
+          </tr>
+          <tr v-if="!legacyItems.length">
+            <td colspan="5" class="empty-state">暂无遗留事项</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
   </section>
 </template>
 
@@ -79,7 +106,8 @@ import {
   moduleMeta,
   runAction as applyAction,
 } from '@/api/local-service'
-import type { EntryRow } from '@/data/types'
+import { listShiftLegacy } from '@/api/slag-guard'
+import type { EntryRow, ShiftLegacyItem } from '@/data/types'
 
 const meta = moduleMeta('shift')
 const columns = ["交接编号", "值班班组", "班次", "交班人员", "接班人员", "交接事项", "交接时间", "交接状态"]
@@ -91,6 +119,7 @@ const rows = ref<EntryRow[]>([])
 const total = ref(0)
 const errorMessage = ref('')
 const filters = ref<Record<string, string>>({})
+const legacyItems = ref<ShiftLegacyItem[]>([])
 const filterFields = columns.slice(0, 3)
 const statusSummary = computed(() =>
   statuses.map((status: string) => ({
@@ -128,6 +157,7 @@ function reload() {
     const payload = listEntries(meta.key, filters.value)
     rows.value = payload.items
     total.value = payload.total
+    legacyItems.value = listShiftLegacy()
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : '值班交接班列表读取失败'
   }

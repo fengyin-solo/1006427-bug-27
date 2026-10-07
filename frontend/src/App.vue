@@ -11,7 +11,16 @@
     <main class="app-main">
       <header class="app-head">
         <span class="head-desc">面向垃圾进厂计量、垃圾池管理、焚烧炉与余热锅炉运行、汽轮发电机组、烟气净化与在线排放监测、飞灰固化与炉渣处理、渗滤液处理、设备点检检修与值班交接的一体化生活垃圾焚烧发电厂运行管理工作台。</span>
-        <span class="head-user">当前值班：{{ store.operator }} · {{ store.shiftLabel }}</span>
+        <span class="head-user">
+          当前值班：{{ store.operator }} · {{ store.shiftLabel }} ·
+          <select
+            class="crew-select"
+            :value="store.crew"
+            @change="store.setCrew(($event.target as HTMLSelectElement).value)"
+          >
+            <option v-for="crew in store.crews" :key="crew" :value="crew">{{ crew }}</option>
+          </select>
+        </span>
       </header>
       <RouterView />
     </main>
